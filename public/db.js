@@ -56,7 +56,7 @@ function checkDatabase() {
     }
 }
 
-request.onsuccess(e => {
+request.onsuccess = function (e) {
     console.log("Success");
     db = e.target.result;
 
@@ -64,9 +64,9 @@ request.onsuccess(e => {
         console.log("Backend online.");
         checkDatabase();
     }
-})
+}
 
-const saveRecord = (record) => {
+const saveRecord = function (record) {
     const transaction = db.transaction(['BudgetStore'], 'readwrite');
 
     const store = transaction.objectStore('BudgetStore');
